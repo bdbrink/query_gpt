@@ -8,35 +8,73 @@ aiohttp==3.8.4
     # via openai
 aiosignal==1.3.1
     # via aiohttp
+appdirs==1.4.4
+    # via yfinance
 async-timeout==4.0.2
     # via aiohttp
 attrs==23.1.0
     # via aiohttp
+beautifulsoup4==4.12.2
+    # via yfinance
 certifi==2023.5.7
     # via requests
 charset-normalizer==3.1.0
     # via
     #   aiohttp
     #   requests
+frozendict==2.3.8
+    # via yfinance
 frozenlist==1.3.3
     # via
     #   aiohttp
     #   aiosignal
+html5lib==1.1
+    # via yfinance
 idna==3.4
     # via
     #   requests
     #   yarl
+lxml==4.9.3
+    # via yfinance
 multidict==6.0.4
     # via
     #   aiohttp
     #   yarl
+multitasking==0.0.11
+    # via yfinance
+numpy==1.25.0
+    # via
+    #   pandas
+    #   yfinance
 openai==0.27.8
     # via -r requirements.txt
+pandas==2.0.3
+    # via yfinance
+python-dateutil==2.8.2
+    # via pandas
+pytz==2023.3
+    # via
+    #   pandas
+    #   yfinance
 requests==2.31.0
-    # via openai
+    # via
+    #   openai
+    #   yfinance
+six==1.16.0
+    # via
+    #   html5lib
+    #   python-dateutil
+soupsieve==2.4.1
+    # via beautifulsoup4
 tqdm==4.65.0
     # via openai
+tzdata==2023.3
+    # via pandas
 urllib3==2.0.3
     # via requests
+webencodings==0.5.1
+    # via html5lib
 yarl==1.9.2
     # via aiohttp
+yfinance==0.2.22
+    # via -r requirements.txt
