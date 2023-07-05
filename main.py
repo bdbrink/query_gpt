@@ -1,6 +1,7 @@
 import openai
 import json
 import os
+import yfinance as yfg
 
 openai.api_key = os.environ['OPEN_API_KEY']
 
