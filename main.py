@@ -1,7 +1,7 @@
 import openai
 import json
 import os
-import yfinance as yfg
+import yfinance as yf
 
 openai.api_key = os.environ['OPEN_API_KEY']
 
@@ -76,5 +76,7 @@ def run_conversation():
         )  # get a new response from GPT where it can see the function response
         return second_response
 
+def get_stock_price(ticker):
+    return str(yf.Ticker(ticker).history(period="1mo").iloc[-1])
 
-print(run_conversation())
+print(get_stock_price("MSFT"))
