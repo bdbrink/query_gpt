@@ -18,12 +18,12 @@ def get_current_weather(location, unit="fahrenheit"):
     return json.dumps(weather_info)
 
 
-def run_conversation():
+def run_conversation(user_message):
     # Step 1: send the conversation and available functions to GPT
-    messages = [{"role": "user", "content": "What's the weather like in Boston?"}]
+    messages = [{"role": "user", "content": user_message}]
     functions = [
         {
-            "name": "get_current_weather",
+            "name": "get_stock_price",
             "description": "Get the current weather in a given location",
             "parameters": {
                 "type": "object",
@@ -77,6 +77,5 @@ def run_conversation():
         return second_response
 
 def get_stock_price(ticker):
-    return str(yf.Ticker(ticker).history(period="1mo").iloc[-1])
+    return str(yf.Ticker(ticker).history(period="1mo").iloc[-1].Close)
 
-print(get_stock_price("MSFT"))
