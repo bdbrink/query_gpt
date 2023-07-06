@@ -24,17 +24,17 @@ def run_conversation(user_message):
     functions = [
         {
             "name": "get_stock_price",
-            "description": "Get the current weather in a given location",
+            "description": "Get the stock price for a given ticket symbol",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "location": {
+                    "ticker": {
                         "type": "string",
-                        "description": "The city and state, e.g. San Francisco, CA",
+                        "description": "The ticker symbol for the company (eg. MSFT is microsoft)",
                     },
                     "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
                 },
-                "required": ["location"],
+                "required": ["ticker"],
             },
         }
     ]
@@ -51,14 +51,13 @@ def run_conversation(user_message):
         # Step 3: call the function
         # Note: the JSON response may not always be valid; be sure to handle errors
         available_functions = {
-            "get_current_weather": get_current_weather,
+            "get_stock_price": get_stock_price,
         }  # only one function in this example, but you can have multiple
         function_name = response_message["function_call"]["name"]
         fuction_to_call = available_functions[function_name]
         function_args = json.loads(response_message["function_call"]["arguments"])
         function_response = fuction_to_call(
-            location=function_args.get("location"),
-            unit=function_args.get("unit"),
+            ticker=function_args.get("ticker")
         )
 
         # Step 4: send the info on the function call and function response to GPT
@@ -79,3 +78,4 @@ def run_conversation(user_message):
 def get_stock_price(ticker):
     return str(yf.Ticker(ticker).history(period="1mo").iloc[-1].Close)
 
+print(run_conversation("Give me stock price of Microsoft"))
