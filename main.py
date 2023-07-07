@@ -3,19 +3,8 @@ import json
 import os
 import yfinance as yf
 
+# use export command to generate
 openai.api_key = os.environ['OPEN_API_KEY']
-
-# Example dummy function hard coded to return the same weather
-# In production, this could be your backend API or an external API
-def get_current_weather(location, unit="fahrenheit"):
-    """Get the current weather in a given location"""
-    weather_info = {
-        "location": location,
-        "temperature": "72",
-        "unit": unit,
-        "forecast": ["sunny", "windy"],
-    }
-    return json.dumps(weather_info)
 
 
 def run_conversation(user_message):
@@ -78,4 +67,4 @@ def run_conversation(user_message):
 def get_stock_price(ticker):
     return str(yf.Ticker(ticker).history(period="1mo").iloc[-1].Close)
 
-print(run_conversation("Give me stock price of Microsoft"))
+print(run_conversation("Give me the stock price for the best car company on the market"))
